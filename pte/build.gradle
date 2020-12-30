@@ -25,20 +25,20 @@ ext {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.h2database:h2'
-	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
-	annotationProcessor 'org.projectlombok:lombok'
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
-	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'				// JPA
+	implementation 'org.springframework.boot:spring-boot-starter-hateoas'				// HATEOAS
+//	implementation 'org.springframework.boot:spring-boot-starter-security'				// Security
+	implementation 'org.springframework.boot:spring-boot-starter-validation'			// Validation
+	implementation 'org.springframework.boot:spring-boot-starter-web'					// Web
+	compileOnly 'org.projectlombok:lombok'												// Lombok (컴파일 전용 종속성 선언)
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'						// Devtool
+//	runtimeOnly 'com.h2database:h2'														// H2 (런타임 종속성 선언)
+	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'										// Oracle (런타임 종속성 선언)
+	annotationProcessor 'org.projectlombok:lombok'										// Lombok (컴파일 시점 코드를 생성)
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'				// Tomcat
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'				// jUnit (종속성 테스트)
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'			// MockMVC (종속성 테스트)
+	testImplementation 'org.springframework.security:spring-security-test'				// Security (종속성 테스트)
 }
 
 test {
