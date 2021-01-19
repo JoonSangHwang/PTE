@@ -1,7 +1,7 @@
 const mongoose  = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('models/node_modules/bcrypt');
 const saltRounds = 10 // 열자리를 라운드처리하는것
-const jwt = require('jsonwebtoken');
+const jwt = require('models/node_modules/jsonwebtoken');
 const userSchema = mongoose.Schema({
     name : {
         type : String,

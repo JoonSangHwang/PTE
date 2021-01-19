@@ -2,10 +2,10 @@ const express = require('express');
 const app = express();
 const port = 5000
 const bodyParser = require('body-parser');
-const {User}=require("./models/User");// 회원가입에 필요한 정보를 가져오기 위한것
+const {User}=require("models/User");// 회원가입에 필요한 정보를 가져오기 위한것
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const config = require("./config/key");
+const config = require("./key");
 const { auth } = require('./middleware/auth');
 
 //application/x-www-form-urlencoded 
