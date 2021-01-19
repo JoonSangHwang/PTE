@@ -1,7 +1,7 @@
 const mongoose  = require('mongoose');
 const bcrypt = require('bcrypt');
 const saltRounds = 10 // 열자리를 라운드처리하는것
-
+const jwt = require('jsonwebtoken');
 const userSchema = mongoose.Schema({
     name : {
         type : String,
@@ -50,8 +50,47 @@ if(user.isModified('password')){
             next()//되돌아가기
         })
     })
+ }else{
+     next()
  }
 })
+    userSchema.methods.comparePassword=function(plainPassword,cb){
+        //painPassword 1234567  암호화된 비밀번호 "$2b$10$LnOrbKhg...
+        //이두개가 맞는지 확인하는 과정이 필요하다.
+        bcrypt.compare(plainPassword,this.password, function(err,isMatch){
+            if(err) return cb(err);
+                cb(null,isMatch);
 
+        })
+    }
+
+
+    userSchema.methods.generateToken =function(cb){
+
+        var user = this;
+        //jsonwebtoken을 이용해서 token을 생성하기
+        var token = jwt.sign(user.id.toString(),'secretToken')
+        //toHexString()
+        user.token = token
+        user.save(function(err,user){
+            if(err) return res.cb(400)
+            cb(null,user)
+
+        })
+    }
+
+    userSchema.statics.findByToken =function(token,cb){
+        var user =this;
+        //토큰을 decode 한다. 
+
+
+        jwt.verify(token, 'secretToken', function(err, decoded) {//'secretToken'우리가 암호화한 토큰
+            //유저아이디를 이용해서 유저를 찾은 다음에
+            //클라이언트에서 가져온 token과 DB에 보관된 토큰이 일치하는지 확인
+            if(err) return cb(err);
+            cb(null,user) 
+        });
+    }
+    
 const User = mongoose.model('User',userSchema)
 module.exports = {User};// 이모델을 다른곳에서 사용 하기위해서 
