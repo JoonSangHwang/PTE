@@ -2,10 +2,10 @@ const express = require('express');
 const app = express();
 const port = 5000
 const bodyParser = require('body-parser');
-const {User}=require("models/User");// 회원가입에 필요한 정보를 가져오기 위한것
+const {User}=require("./models/User");// 회원가입에 필요한 정보를 가져오기 위한것
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const config = require("./key");
+const config = require("./config/key");
 const { auth } = require('./middleware/auth');
 
 //application/x-www-form-urlencoded 
@@ -23,6 +23,11 @@ mongoose.connect(config.mongoURI,{
 
 app.get('/', (req, res) => res.send('Hello World!'))
  
+app.get('/api/hello',(req,res)=>{
+  res.send("안녕하세요")
+})
+
+
 app.post('/api/user/register',(req,res)=>{
   //회원가입시 핑요한 정보들을 Client에서 가져오면
   //그것을 데이터 베이스에 넣는다. 
