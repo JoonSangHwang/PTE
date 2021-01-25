@@ -1,7 +1,7 @@
-import { response } from 'express';
 import React, {useState} from 'react'
 import { useDispatch } from 'react-redux';
 import {loginUser} from '../../../_actions/user_action';
+function LoginPage(props){
   const dispatch = useDispatch();
 
   const [Email, setEmail]= useState("")
@@ -25,12 +25,13 @@ import {loginUser} from '../../../_actions/user_action';
     dispatch(loginUser(body))
     .then(response =>{
       if(response.payload.loginSuccess){
-        pros.history.push('/')
+        props.history.push('/')
       }else{
         alert('Error')
       }
     })
   }
+  
 
     return(
         <div style={{
