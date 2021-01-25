@@ -73,11 +73,11 @@ app.post('/api/users/login',(req,res)=>{
 app.get('/api/users/auth',auth,(req,res)=>{// auth 부분은 미들웨어를 만들어 사용할예정 
   // 여기까지 미들웨어를 통과했다면 여기는 Authentication 이 ture
   //클라이언트에 정보제공해야함
+      //어드민 부분의 경우 role 1 어드민 role 2 특정 부서 어드민 하면 바꿀수 있지만
+    //role 0 일반유저, role 0이 아니면 관리자로 되어있어서 아래와같이 선언
   res.status(200).json({
     _id : req.user.id,
-    //어드민 부분의 경우 role 1 어드민 role 2 특정 부서 어드민 하면 바꿀수 있지만
-    //role 0 일반유저, role 0이 아니면 관리자로 되어있어서 아래와같이 선언
-    isAdmin : req.user.role ===0?false:true,
+    isAdmin : req.user.role === 0 ? false : true,
     isAuth : true,
     email : req.user.email,
     name : req.user.name,

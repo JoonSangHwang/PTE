@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+
 function LandingPage(props){
 
     useEffect(() => {
@@ -7,7 +9,7 @@ function LandingPage(props){
             .then(response => { console.log(response) })
     }, [])
 
-    const onClickHandler = ()=>{
+    const onClickHandler = () =>{
     axios.get('/api/users/logout')
     .then(response=>{
         if(response.data.success){
@@ -32,4 +34,4 @@ function LandingPage(props){
     )
 }
 
-export default LandingPage
+export default withRouter(LandingPage)
