@@ -1,9 +1,7 @@
 plugins {
-	id 'org.springframework.boot' version '2.4.1'
-	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-	id 'org.asciidoctor.convert' version '1.5.8'
+	id 'org.springframework.boot' version '2.4.2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
-	id 'war'
 }
 
 group = 'com.project'
@@ -18,10 +16,6 @@ configurations {
 
 repositories {
 	mavenCentral()
-}
-
-ext {
-	set('snippetsDir', file("build/generated-snippets"))
 }
 
 dependencies {
@@ -42,11 +36,5 @@ dependencies {
 }
 
 test {
-	outputs.dir snippetsDir
 	useJUnitPlatform()
-}
-
-asciidoctor {
-	inputs.dir snippetsDir
-	dependsOn test
 }
