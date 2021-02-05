@@ -3,6 +3,9 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
 function LandingPage(props){
+    // axios.post('/api/hello',(req,res)=>{
+    //     res.send("dkssud")
+    //   })
 
     useEffect(() => {
         axios.get('/api/hello')
