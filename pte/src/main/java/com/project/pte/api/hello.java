@@ -21,6 +21,11 @@ public class hello {
         return "안녕하세요. 경민 현재 서버시간은 "+new Date() +"입니다. \n";
     }
 
+    @GetMapping("/api/hello2")
+    public String hello2() {
+        return "안녕하세요. 경민2 현재 서버시간은 "+new Date() +"입니다. \n";
+    }
+
     @GetMapping("/api/dbTest")
     public Members dbTest() {
         Members members = new Members();
