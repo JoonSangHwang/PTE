@@ -8,7 +8,7 @@ function LandingPage(props){
     //   })
 
     useEffect(() => {
-        axios.get('/api/hello')
+        axios.get('http://13.59.215.241:8080/api/hello')
             .then(response => { console.log(response) })
     }, [])
 
