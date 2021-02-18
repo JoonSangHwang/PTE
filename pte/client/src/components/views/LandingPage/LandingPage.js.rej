@@ -1,0 +1,11 @@
+diff a/pte/client/src/components/views/LandingPage/LandingPage.js b/pte/client/src/components/views/LandingPage/LandingPage.js	(rejected hunks)
+@@ -1,5 +1,8 @@
+ import React from 'react'
+-
++useEffect(() => {
++    axios.get('/api/hello2')
++        .then(response => { console.log(response) })
++}, [])
+ function LandingPage() {
+     return (
+         <div>
