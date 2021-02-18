@@ -13,7 +13,7 @@ import java.util.Optional;
 @RestController
 public class hello {
 
-    @Autowired
+    @Autowired(required=false)
     MemberRepository memberRepository;
 
     @GetMapping("/api/hello")
