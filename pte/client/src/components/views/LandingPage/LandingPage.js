@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import axios from 'axios';
 
-function LandingPage(props) {
+function LandingPage(props) {//수정
     // useEffect(() => {
     //     axios.get('/api/hello2')
     //         .then(response => { console.log(JSON.stringify(response)) })
