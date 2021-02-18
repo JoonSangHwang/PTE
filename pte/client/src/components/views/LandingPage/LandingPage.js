@@ -23,7 +23,7 @@ function LandingPage(props) {//수정
         }}>
             <h2>시작 페이지</h2>
             <button onClick={onClickHandler}>
-                로그인
+                로그인 
             </button>
         </div>
     )
