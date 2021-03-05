@@ -32,6 +32,6 @@ const videoSchema = mongoose.Schema({
         type: String,
     }
 },{timestamp: true})
-const Video = mongoose.model('Video', userSchema);
+const Video = mongoose.model('Video', videoSchema);
 
-module.exports = { User }
+module.exports = { Video }

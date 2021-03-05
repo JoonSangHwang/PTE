@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import Dropzone from 'react-dropzone';
 import {Typography, Button, Form, message, Input, Icon} from 'antd';
-import axios from 'axios';
 import Axios from 'axios';
 import { useSelector } from 'react-redux';
+
 const {TextArea} = Input;
 const {Title} = Typography;
 
@@ -19,7 +19,7 @@ const CategoryOptions =[
 ]
 
 function VideoUploadPage(props) {
-    const user = useSelector(state=> state.user);//state로 가서 유저 정보 가져오는것 
+    const user = useSelector((state)=> state.user);//state로 가서 유저 정보 가져오는것 
     const [VideoTitle, setVideoTitle] = useState("")
     const [Description, setDescription] = useState("")
     const [Private, setPrivate] = useState(0)
@@ -49,7 +49,7 @@ function VideoUploadPage(props) {
         }
         formData.append("file",files[0])//첫번째 가져오기 위해 array 사용
         console.log(files)//파일의 파라미터가 저장됨
-        axios.post('/api/video/uploadfiles',formData,config)
+        Axios.post('/api/video/uploadfiles',formData,config)
         .then(response=>{
             if(response.data.success){
                 console.log(response.data)
@@ -81,7 +81,7 @@ function VideoUploadPage(props) {
     }
 
     const onSubmit = (e)=>{
-        e.preventDefault();//클릭하면 하려고 한것을 방지할 수 있다.
+       // e.preventDefault();//클릭하면 하려고 한것을 방지할 수 있다.
         const variables = {
             writer: user.userData._id,
             title: VideoTitle,
@@ -98,8 +98,8 @@ function VideoUploadPage(props) {
                 //console.log(respones.body)
                 message.success('성공적으로 업로드를 했습니다.')
                 setTimeout(()=>{
-                    props.history('/')
-                },3000)
+                    props.history.push('/');
+                },3000);
             }else{
                 alert('비디오 업로드에 실패 했습니다.')
             }
