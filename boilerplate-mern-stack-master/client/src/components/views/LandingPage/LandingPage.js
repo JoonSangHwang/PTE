@@ -2,6 +2,7 @@ import { Card,Icon,Avatar,Col,Typography,Row } from 'antd';
 import Axios from 'axios';
 import React ,{useEffect,useState} from 'react'
 import moment from 'moment'
+
 const { Title } = Typography
 const { Meta}  = Card;
 
@@ -22,20 +23,21 @@ function LandingPage() {
         var seconds = Math.floor((video.duration-(minutes*60)));
                      {/*lg 6이면 4개의 화면 //md 8이니까 줄어들었을때 3개의 화면*/}
         return <Col key={index} lg={6} md={8} xs={24}>
-            <a href = {`/video/post/${video._id}`}>
             <div style={{position: 'relative'}}>
-                <img style={{width: '100%'}} src={`http://localhost:5000/${video.thumbnail}`} alt="thumbnail"/>
+            <a href = {`/video/${video._id}`}>
+                <img style={{width: '100%'}} 
+                src={`http://localhost:5000/${video.thumbnail}`} alt="thumbnail"/>
                 <div className="duration">
                     <span>{minutes} : {seconds}</span>
                 </div>
+                </a>
             </div>
-        </a>
         <br/>
         <Meta
         avatar={
             <Avatar src={video.writer.image}/>
         }
-        title ={Video.title}
+        title ={video.title}
         description=""                
         />
         <span>{video.writer.name}</span><br/>
