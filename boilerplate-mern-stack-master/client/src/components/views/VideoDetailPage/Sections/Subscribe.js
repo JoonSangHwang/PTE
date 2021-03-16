@@ -30,15 +30,46 @@ const [Subscribed, setSubscribed] = useState(false)
 
 
     }, [])
+    const onSubscribe = () => {
+        let subscribedVariable = {
+
+            userTo : props.userTo,
+            userFrom : props.userFrom
+
+        }
+
+        //만약 구독 중이라면
+        if(Subscribed){
+            Axios.post('/api/subscribe/unSubscribe',subscribedVariable)
+            .then(response=>{
+                if(response.data.success){
+                    setSubscribeNumber(SubscribeNumber-1)
+                    setSubscribed(!Subscribed)
+                }else{
+                    alert('구독을 취소 하는데 실패 했습니다.')
+                }
+            })
+        }else{//만약 구독 중이 아니라면
+            Axios.post('/api/subscribe/subscribe',subscribedVariable)
+            .then(response=>{
+                if(response.data.success){
+                    setSubscribeNumber(SubscribeNumber+1)
+                    setSubscribed(!Subscribed)
+                }else{
+                    alert('구독을 하는데 실패 했습니다.')
+                }
+            })
+        }
+    }
     return (
         <div>
             <button
-                style  ={{backgroundColor:`${Subscribe ? '#CC0000':'#AAAAAA'}`, borderRadius: '4px',
+                style  ={{backgroundColor:`${Subscribed ? '#AAAAAA':'#CC0000'}`, borderRadius: '4px',
                 color:'white',padding: '10px 16px',
                 fontWeight: '500', fontSize: '1rem', textTransform: 'uppercase' 
 
             }}
-            onClick
+            onClick={onSubscribe}
             >
                {SubscribeNumber} {Subscribed ? 'Subscribed' : 'Subscribe'}
             </button>
